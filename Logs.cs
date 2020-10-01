@@ -14,7 +14,22 @@ class Logs
     public ulong ServerID;
 
     string connectionString = @"Server=ALEX_DESKTOP;Database=Discord Bot;Trusted_Connection=True;";
+
     SqlConnection connection;
 
-    connection
+    public void SetLogs()
+    {
+        connection = new SqlConnection(connectionString);
+        Console.WriteLine("[info] Opening server");
+        connection.Open();
+        Console.WriteLine("[info]")
+        
+    }
+
+    private void test()
+    {
+
+        connection.Open();
+    }
+
 }

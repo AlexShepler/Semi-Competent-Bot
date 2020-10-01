@@ -22,7 +22,12 @@ internal class Program
     private InteractivityModule _interactivity;
 
     /* Use the async main to create an instance of the class and await it(async main is only available in C# 7.1 onwards). */
-    static async Task Main(string[] args) => await new Program().InitBot(args);
+    static async Task Main(string[] args){
+        await new Program().InitBot(args);
+        
+        Events events;
+        events.EventHandler(args).ConfigureAwait(false).GetAwaiter().GetResult();
+    }
 
     async Task InitBot(string[] args)
     {

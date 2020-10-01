@@ -53,17 +53,6 @@ public class BasicCommandsModule : IModule
         }
     }
 
-    [Command("Alhm")]
-    [Description("Not for you bitch")]
-    public async Task Alhm(CommandContext ctx)
-    {
-        Console.WriteLine("[info] Role Requested");
-        var member = ctx.Member;
-        var role = ctx.Guild.Roles.FirstOrDefault(x => x.Name == "DJ");
-        await ctx.Guild.GrantRoleAsync(member, role);
-        Console.WriteLine("[info] Role Granted");
-    }
-
     [Command("Setup")]
     [Description("Setup the basics for the server")]
     public async Task Setup(CommandContext ctx)
@@ -116,6 +105,5 @@ public class BasicCommandsModule : IModule
         Console.WriteLine("[info] Set channel ID to " + log.LogChannelID.ToString());
         log.ServerID = context.Guild.Id;
         Console.WriteLine("[info] Set Server ID to " + log.ServerID.ToString());
-
     }
 }
