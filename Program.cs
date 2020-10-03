@@ -17,16 +17,19 @@ internal class Program
     private IConfigurationRoot _config;
 
     /* These are the discord library's main classes */
-    private DiscordClient _discord;
+    public DiscordClient _discord { get; set; }
     private CommandsNextModule _commands;
     private InteractivityModule _interactivity;
 
+    Events events;
+
     /* Use the async main to create an instance of the class and await it(async main is only available in C# 7.1 onwards). */
-    static async Task Main(string[] args){
+    static async Task Main(string[] args)
+    {
         await new Program().InitBot(args);
+
         
-        Events events;
-        events.EventHandler(args).ConfigureAwait(false).GetAwaiter().GetResult();
+
     }
 
     async Task InitBot(string[] args)
@@ -67,9 +70,7 @@ internal class Program
                 Dependencies = deps // Pass the dependancies
             });
 
-            // TODO: Add command loading!
             Console.WriteLine("[info] Loading Commad Modules....");
-
             var type = typeof(IModule);
             var types = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(s => s.GetTypes())

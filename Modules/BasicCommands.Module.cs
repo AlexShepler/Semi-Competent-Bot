@@ -65,7 +65,7 @@ public class BasicCommandsModule : IModule
         Console.WriteLine("[infp Completed");
         Console.WriteLine("[info] Initilizing setup function");
         Console.WriteLine("[info] Creating logs channel");
-        await ctx.Guild.CreateChannelAsync("Logs", DSharpPlus.ChannelType.Text, null, null, null );
+        await ctx.Guild.CreateChannelAsync("Logs", DSharpPlus.ChannelType.Text, null, null, null);
         Console.WriteLine("[info] Logs channel created");
     }
 
@@ -99,11 +99,13 @@ public class BasicCommandsModule : IModule
     [Command("SetLogsChannel")]
     [Description("Sets the log channel for the server")]
     [RequirePermissions(Permissions.Administrator)]
-    public async Task SetLogschannel(CommandContext context){
+    public async Task SetLogschannel(CommandContext context)
+    {
         Console.WriteLine("[info] Retreiving logs channel id and server id");
         log.LogChannelID = context.Channel.Id;
         Console.WriteLine("[info] Set channel ID to " + log.LogChannelID.ToString());
         log.ServerID = context.Guild.Id;
         Console.WriteLine("[info] Set Server ID to " + log.ServerID.ToString());
+        log.SetLogs();
     }
 }

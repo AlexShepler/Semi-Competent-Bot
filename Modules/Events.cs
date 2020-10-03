@@ -10,10 +10,17 @@ using System.Threading.Tasks;
 using System.Linq;
 
 
-class Events{
-    static DiscordClient discord;
-
-    public static async Task EventHandler(string[] args){
-
+class Events
+{
+    public Events(DiscordClient client){
+        _discord = client;
+    }
+    static public DiscordClient _discord { get; set; }
+    public static async Task EventHandler(string[] args)
+    {
+        _discord.MessageCreated += async e =>
+        {
+            await e.Message.RespondAsync("Test");
+        };
     }
 }
