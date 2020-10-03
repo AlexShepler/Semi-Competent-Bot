@@ -17,19 +17,15 @@ internal class Program
     private IConfigurationRoot _config;
 
     /* These are the discord library's main classes */
-    public DiscordClient _discord { get; set; }
+    private DiscordClient _discord;
     private CommandsNextModule _commands;
     private InteractivityModule _interactivity;
 
-    Events events;
 
     /* Use the async main to create an instance of the class and await it(async main is only available in C# 7.1 onwards). */
     static async Task Main(string[] args)
     {
         await new Program().InitBot(args);
-
-        
-
     }
 
     async Task InitBot(string[] args)
@@ -66,7 +62,8 @@ internal class Program
             var deps = BuildDeps();
             _commands = _discord.UseCommandsNext(new CommandsNextConfiguration
             {
-                StringPrefix = _config.GetValue<string>("discord:CommandPrefix"), // Load the command prefix(what comes before the command, eg "!" or "/") from our config file
+                // Load the command prefix(what comes before the command, eg "!" or "/") from our config file
+                StringPrefix = _config.GetValue<string>("discord:CommandPrefix"),
                 Dependencies = deps // Pass the dependancies
             });
 
